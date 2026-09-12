@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  /* JanSetu brand palette */
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-mist: var(--brand-mist);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+}
+
+:root {
+  --radius: 1.125rem;
+  /* Warm paper off-white */
+  --background: #F4F4EF;
+  --foreground: #1B2420;
+  --card: #FFFFFF;
+  --card-foreground: #1B2420;
+  --popover: #FFFFFF;
+  --popover-foreground: #1B2420;
+  /* JanSetu teal-emerald */
+  --primary: #0E8A6D;
+  --primary-foreground: #FFFFFF;
+  --secondary: #ECEDE6;
+  --secondary-foreground: #26332C;
+  --muted: #EDEEE8;
+  --muted-foreground: #6E7A73;
+  --accent: #E3F1EA;
+  --accent-foreground: #0A5C48;
+  --destructive: #D64524;
+  --border: #E3E6DD;
+  --input: #E3E6DD;
+  --ring: #0E8A6D;
+  --chart-1: #0E8A6D;
+  --chart-2: #45B08C;
+  --chart-3: #E0A538;
+  --chart-4: #96A33B;
+  --chart-5: #C97B5A;
+  --sidebar: #F9FAF6;
+  --sidebar-foreground: #1B2420;
+  --sidebar-primary: #0E8A6D;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E3F1EA;
+  --sidebar-accent-foreground: #0A5C48;
+  --sidebar-border: #E3E6DD;
+  --sidebar-ring: #0E8A6D;
+  /* Brand scale */
+  --brand: #0E8A6D;
+  --brand-deep: #0A5C48;
+  --brand-soft: #7FC4A8;
+  --brand-mist: #E3F1EA;
+  --ink: #1B2420;
+  --ink-soft: #55605A;
+}
+
+.dark {
+  --background: #101513;
+  --foreground: #EDEEE8;
+  --card: #191F1C;
+  --card-foreground: #EDEEE8;
+  --popover: #191F1C;
+  --popover-foreground: #EDEEE8;
+  --primary: #45B08C;
+  --primary-foreground: #0B1611;
+  --secondary: #222925;
+  --secondary-foreground: #EDEEE8;
+  --muted: #222925;
+  --muted-foreground: #9AA59E;
+  --accent: #1C2E27;
+  --accent-foreground: #9FD8BE;
+  --destructive: #E5603C;
+  --border: #262E29;
+  --input: #262E29;
+  --ring: #45B08C;
+  --chart-1: #45B08C;
+  --chart-2: #0E8A6D;
+  --chart-3: #E0A538;
+  --chart-4: #96A33B;
+  --chart-5: #C97B5A;
+  --sidebar: #141A17;
+  --sidebar-foreground: #EDEEE8;
+  --sidebar-primary: #45B08C;
+  --sidebar-primary-foreground: #0B1611;
+  --sidebar-accent: #1C2E27;
+  --sidebar-accent-foreground: #9FD8BE;
+  --sidebar-border: #262E29;
+  --sidebar-ring: #45B08C;
+  --brand: #45B08C;
+  --brand-deep: #9FD8BE;
+  --brand-soft: #2E5A48;
+  --brand-mist: #1C2E27;
+  --ink: #EDEEE8;
+  --ink-soft: #9AA59E;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* ------- JanSetu custom utilities ------- */
+
+/* iOS-style hairline top highlight on cards */
+.card-hairline {
+  position: relative;
+}
+.card-hairline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px 1px 0 0;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 40%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Soft ambient shadow for floating cards */
+.shadow-float {
+  box-shadow:
+    0 1px 2px rgba(27, 36, 32, 0.05),
+    0 8px 24px -8px rgba(27, 36, 32, 0.12);
+}
+.shadow-float-lg {
+  box-shadow:
+    0 2px 4px rgba(27, 36, 32, 0.06),
+    0 24px 48px -12px rgba(27, 36, 32, 0.22);
+}
+
+/* Frosted glass surfaces */
+.glass {
+  background: color-mix(in srgb, #FFFFFF 72%, transparent);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+.glass-dark {
+  background: rgba(16, 21, 19, 0.62);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+}
+
+/* Hide scrollbars but keep scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Elegant thin scrollbar for long lists */
+.jansetu-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.jansetu-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.jansetu-scroll::-webkit-scrollbar-thumb {
+  background: #C9D2CC;
+  border-radius: 999px;
+}
+
+/* Tabular numbers for stats */
+.nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Subtle noise texture for the ambient desktop backdrop */
+.noise-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+/* Spring-ish standard transition for interactive elements */
+.tap {
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
+}
+.tap:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+/* Dotted map texture for stylized Jharkhand map */
+.dot-grid {
+  background-image: radial-gradient(#D5DCD5 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+@keyframes shimmer-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  animation: shimmer-slide 1.6s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--brand);
+  animation: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
